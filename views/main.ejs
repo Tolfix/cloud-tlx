@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Free cloud service">
+    <meta name="keywords" content="Cloud, Tolfix, Cloud Service, Cloud Tolfix, Tolfix Cloud">
+    <meta name="author" content="Tolfix">
+    <meta property="og:type" content="Cloud Service" />
+    <meta property="og:title" content="Tolfix Cloud Service" />
+    <meta property="og:description" content="Free cloud service" />
+    <meta property="og:image" content="https://cloud.tlx.tf/TX-Small.png" />
+    <meta property="og:url" content="https://cloud.tlx.tf/" />
+    <meta property="og:site_name" content="Tolfix Cloud Service" />
+    <meta name="theme-color" content="#FDFFF0">
+    <script async src="https://arc.io/widget.min.js#a64wfwmD"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://bootswatch.com/4/slate/bootstrap.min.css">
+    <link rel="icon" href="/TX-Small.png" type="image/x-icon">
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+      crossorigin="anonymous"
+    />
+    <title>Tolfix Cloud Service</title>
+</head>
+<body class="text-white">
+    <%- include("messages") %>
+
+    <img style="margin-top: 5%;" class="mx-auto d-block" src="/TX.png" width="250" height="250" alt="">
+    <div class="container">
+        <h1 class="text-center">Tolfix Cloud Service</h1>
+        <form enctype="multipart/form-data" action="/upload" method="post">
+            <div class="custom-file">
+                <input type="file" name="image" class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+            <button class="btn btn-block btn-success" type="submit">Upload</button>
+        </form>
+        <h1 class="text-center text-monospace mt-3">Total files uploaded: <%= totalFiles %></h1>
+        <h1 class="text-center text-monospace mt-3">Storage capacity</h1>
+        <% let maxStorage = 150000 %>
+        <% let currentStorage = storage/1000000 %>
+        <p class="text-center"><%= parseFloat(currentStorage/maxStorage).toFixed(5) %>%</p>
+        <div class="progress" style="height: 20px;">
+            <div class="progress-bar" role="progressbar" style="width: <%= currentStorage/maxStorage %>%;" aria-valuenow="<%= parseFloat(currentStorage/maxStorage).toFixed(5) %>" aria-valuemin="0" aria-valuemax="<%= maxStorage %>"><%= parseFloat(currentStorage/maxStorage).toFixed(5) %>%</div>
+        </div>
+    </div>
+
+    <script>
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+</body>
+</html>

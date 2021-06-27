@@ -1,0 +1,52 @@
+<% if(success_msg != ''){ %>
+    <script>
+    $(document).ready(function(){
+        $("#myModal").modal('show');
+    });
+    </script>
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content bg-success">
+                <div class="modal-header" style="border-bottom: 0;">
+                    <h5 style="color: whitesmoke;" class="modal-title text-center"><%= success_msg %></h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<% } %> 
+
+<% if(error_msg != ''){ %>
+    <script>
+        $(document).ready(function(){
+            $("#myModal").modal('show');
+        });
+    </script>
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content bg-danger">
+                <div class="modal-header" style="border-bottom: 0;">
+                    <h5 style="color: whitesmoke;" class="modal-title text-center"><%= error_msg %></h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<% } %> 
+    
+<% if(error != ''){ %>
+    <script>
+    $(document).ready(function(){
+        $("#myModal").modal('show');
+    });
+    </script>
+    <div id="myModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dange">
+                <div class="modal-headerr" style="border-bottom: 0;">
+                    <h5 style="color: whitesmoke;" class="modal-title text-center"><%= error %></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+<% } %>

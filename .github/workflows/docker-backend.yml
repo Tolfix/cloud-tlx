@@ -1,0 +1,47 @@
+name: Docker Image - Backend
+
+on:
+  push:
+    paths: 
+      - 'backend/**'
+    branches:
+      - master
+
+
+jobs:
+
+  # Test our code..
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: "Install"
+        run: npm install
+
+
+      - name: "Test code"
+        env:
+          GITHUB_ACTION: true
+        run: node Server.js
+
+  build:
+
+    needs: test
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker login
+        env:
+          DOCKER_USER: ${{secrets.DOCKER_USERNAME}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag tolfx/cloud-tlx:latest
+      - name: Docker push
+        run: docker push tolfx/ntidiscordbot-backend
