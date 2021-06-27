@@ -22,7 +22,7 @@ jobs:
       - name: "Test code"
         env:
           GITHUB_ACTION: true
-          MONGODB_NAV: {{ secrets.MONGODB }}
+          MONGODB_NAV: ${{ secrets.MONGODB }}
           SESSION_SECRET: somethign_random_doesnt_matter
         run: node Server.js
 
