@@ -6,6 +6,7 @@ const log = require("./lib/Loggers");
 const upload = require("./lib/Storage");
 const flash = require('connect-flash');
 const session = require('express-session');
+const cors = require("cors");
 
 const app = express();
 
@@ -37,8 +38,14 @@ app.use(function (req, res, next) {
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
     res.locals.video = req.flash('video');
+
+    res.setHeader('X-Powered-By', 'Tolfix');
     next();
 });
+
+app.use(cors({
+    origin: "*",
+}));
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
