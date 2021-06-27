@@ -159,3 +159,11 @@ app.listen(PORT, log.verbos(`Server started on port ${PORT}`));
 app.get('*', (req, res) => {
     res.status(404).render('notFound');
 });
+
+if(process.env.JENKINS || process.env.GITHUB_ACTION || process.env.DOCKER_TEST)
+{
+    setTimeout(() => {
+        log.info(`Exiting build.`)
+        process.exit(0); // <-- Exit with code 0
+    }, 30000) // <--- 30 sec
+}

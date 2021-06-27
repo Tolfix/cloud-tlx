@@ -2,8 +2,6 @@ name: Docker Image - Backend
 
 on:
   push:
-    paths: 
-      - 'backend/**'
     branches:
       - master
 
@@ -44,4 +42,4 @@ jobs:
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag tolfx/cloud-tlx:latest
       - name: Docker push
-        run: docker push tolfx/ntidiscordbot-backend
+        run: docker push tolfx/cloud-tlx
