@@ -163,7 +163,7 @@ app.get('*', (req, res) => {
 if(process.env.JENKINS || process.env.GITHUB_ACTION || process.env.DOCKER_TEST)
 {
     setTimeout(() => {
-        log.info(`Exiting build.`)
+        log.verbos(`Exiting build.`)
         process.exit(0); // <-- Exit with code 0
     }, 30000) // <--- 30 sec
 }
